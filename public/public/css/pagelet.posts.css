@@ -16,8 +16,7 @@
 
 
 .pagelet-posts .post {
-	background-color: white;
-	
+	background-color: white;	
 	border: 1px solid #ddd;
 	margin-top: 30px;	
 	padding: 20px;
@@ -31,6 +30,13 @@
 
 .pagelet-posts .post .details {
 	font-style: italic;
+	margin-bottom: 5px;
+	font-size: 1.1em;
+}
+
+.pagelet-posts .post .details .author {
+	color: #2a83bd;
+	text-decoration: underline;
 }
 
 .pagelet-posts .post .content {
