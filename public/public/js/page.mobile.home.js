@@ -31,14 +31,14 @@ function search(term) {
 
 function yes() {
 	if (globalTerm != "") {
-		speakParagraph("You say yes.");
+		speakParagraph("You said yes.");
 		// send ajax and get results.
 		speakParagraph(" Found an article. Do you want to hear this?.");		
 	}	
 }
 
 function no() {
-	speakParagraph("You say no.");
+	speakParagraph("You said no.");
 	globalTerm = "";
 }
 
