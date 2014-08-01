@@ -62,8 +62,6 @@ function initAnnyang() {
 	  	'help me': help,
 	  	'yes': yes,
 	  	'no': no,
-
-	  	// 'help': help
 	  };
 	  // Add our commands to annyang
 	  annyang.addCommands(commands);
@@ -83,8 +81,6 @@ function initGestures() {
 	gestures["Z"] = "030";
 	gestures["Y"] = "21076234567";
 	gestures["N"] = "616";
-
-
 
 	$('body').gestures(gestures, function (data) {
 		// document.getElementById('outputbox').innerHTML += data;
