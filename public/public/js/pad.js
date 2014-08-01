@@ -112,7 +112,7 @@ $.fn.drawMouse = function() {
 	var stop = function(e) {
 		clicked = 0;
 		// clear canvas
-		setTimeout(clear, 4000);
+		// setTimeout(clear, 4000);
 	};
 	$(this).on("mousedown", start);
 	$(this).on("mousemove", move);
