@@ -1,10 +1,45 @@
-<h1>{{.Article.Title}}</h1>
-{{range $index, $section := .Article.Sections}}
-<p id="p-{{$index}}">
-  {{$section.Content}} <br />
-  {{range $section.Audios}}
-  {{.URL}}
-  <a href="http://{{.URL}}">Listen</a> <br />
-  {{end}}
-</p>
-{{end}}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Voice wikipedia</title>
+	<link rel="stylesheet" href="/public/css/normalize.min.css" class="style">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="/public/css/styles.css" class="style">
+
+	<link rel="stylesheet" href="/public/css/page.mobile.article.css" class="style">
+
+</head>
+
+<body>	
+	<div class="header">
+		<h1>{{.Article.Title}}</h1>
+
+		<div class="controls">
+			<div class="control" onclick="doPrev();"><i class="fa fa-backward"></i></div>
+			<div class="control"><i id="icon-play" class="fa fa-play"></i></div>
+			<div class="control" onclick="doNext();"><i class="fa fa-forward"></i></div>
+		</div>
+	</div>
+	<div class="content">
+		{{range $index, $section := .Article.Sections}}
+		<p id="p-{{$index}}">
+		  {{$section.Content}} <br />
+		  {{range $section.Audios}}
+		  {{.URL}}
+		  <a href="http://{{.URL}}">Listen</a> <br />
+		  {{end}}
+		</p>
+		{{end}}
+	</div>
+
+	<script src="/public/js/vendor/jquery-2.1.1.min.js"></script>
+	<script src="/public/js/annyang.min.js"></script>
+	<script src="/public/js/speak.js"></script>
+	<script src="/public/js/page.mobile.article.js"></script>
+</body>	
+</html>
