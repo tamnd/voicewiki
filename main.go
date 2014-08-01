@@ -20,9 +20,9 @@ func main() {
 	}
 	model.Init()
 
-	middleware.InitRouter()
-	middleware.Route("/", handler.Home)
+	middleware.Route("/article/:id", handler.Article)
 	middleware.Route("/list", handler.List)
+	middleware.Route("/", handler.Home)
 
 	middleware.Run()
 }

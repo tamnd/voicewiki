@@ -1,41 +1,42 @@
 package middleware
 
 import (
+	"github.com/zenazn/goji"
+	"github.com/zenazn/goji/graceful"
+	"net"
 	"net/http"
 	"os"
 	"path/filepath"
 )
 
-func Route(pattern string, handler http.HandlerFunc) {
-	if pattern == "/" {
-		homeHandler = handler
-	} else {
-		http.HandleFunc(pattern, handler)
-	}
+func Route(pattern string, handler interface{}) {
+	goji.Handle(pattern, handler)
 }
 
-var homeHandler http.HandlerFunc
-
-func homeDefaultHandler(w http.ResponseWriter, req *http.Request) {
-	http.Error(w, "Not Found", http.StatusNotFound)
+type ServerMux struct {
 }
 
-func InitRouter() {
-	http.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
-		if req.URL.Path == "/" {
-			homeHandler(w, req)
-			return
-		}
-		filename := filepath.Join(Config.App.WebRoot, req.URL.Path)
-		info, err := os.Stat(filename)
-		if err != nil || info.IsDir() {
-			homeHandler(w, req)
-			return
-		}
+func (s *ServerMux) ServeHTTP(w http.ResponseWriter, req *http.Request) {
+	filename := filepath.Join(Config.App.WebRoot, req.URL.Path)
+	info, err := os.Stat(filename)
+	if err == nil && !info.IsDir() {
 		http.ServeFile(w, req, filename)
-	})
+		return
+	}
+	goji.DefaultMux.ServeHTTP(w, req)
 }
+
+var DefaultServerMux = &ServerMux{}
 
 func Run() {
-	http.ListenAndServe(Config.App.Bind, nil)
+	http.Handle("/", DefaultServerMux)
+	listener, err := net.Listen("tcp", Config.App.Bind)
+	if err != nil {
+		panic(err)
+	}
+	err = graceful.Serve(listener, DefaultServerMux)
+	if err != nil {
+		panic(err)
+	}
+	graceful.Wait()
 }
