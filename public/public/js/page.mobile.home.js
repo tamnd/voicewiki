@@ -112,9 +112,18 @@ function initGestures() {
 	});
 }
 
+function initPad() {
+	// setup a new canvas for drawing wait for device init
+   //  setTimeout(function(){
+	   // newCanvas();
+	   $(".main").pad();
+    // }, 1000);	
+}
+
 function init() {
 	initAnnyang();
 	initGestures();
+	initPad();
 }
 
 

@@ -1,38 +1,15 @@
-var ctx, color = "#000";
-
-// function to setup a new canvas for drawing
-function newCanvas(){
-	//define and resize canvas
-
-	/*
-    $("#content").height($(window).height()-90);
-    canvas = '<canvas id="canvas" width="'+$(window).width()+'" height="'+($(window).height()-90)+'"></canvas>';
-	$("#content").html(canvas);
-	*/
-
-	// $("#content").height($(window).height()-90);
-    var canvas = '<canvas id="canvas" width="'+$("#content").width()+'" height="'+$("#content").height()+'"></canvas>';
-	$("#content").html(canvas);
-    
-    // setup canvas
-	ctx=document.getElementById("canvas").getContext("2d");
-	ctx.strokeStyle = color;
-	// ctx.lineWidth = 5;	
-	ctx.lineWidth = 20;
-	// setup to trigger drawing on mouse or touch
-	$("#canvas").drawTouch();
-    $("#canvas").drawPointer();
-	$("#canvas").drawMouse();
-}
+var ctx;
 
 $.fn.pad = function () {
 	// $("#content").height($(window).height()-90);
-    var canvas = '<canvas id="canvas" width="'+$("#content").width()+'" height="'+$("#content").height()+'"></canvas>';
-	$(this).html(canvas);
+    // var canvas = '<canvas id="canvas" width="'+$("#content").width()+'" height="'+$("#content").height()+'"></canvas>';
+    var canvas = '<canvas id="canvas" width="'+$(window).width()+'" height="'+$(window).height()+'" style="position:fixed;top:0;left:0;right:0;bottom:80px;z-index:10;"></canvas>';
+	// $(this).html(canvas);
+	$(this).append(canvas);
 
 	// setup canvas
 	ctx=document.getElementById("canvas").getContext("2d");
-	ctx.strokeStyle = color;
+	ctx.strokeStyle = "#fff";
 	// ctx.lineWidth = 5;	
 	ctx.lineWidth = 20;
 
@@ -40,39 +17,6 @@ $.fn.pad = function () {
 	$("#canvas").drawTouch();
     $("#canvas").drawPointer();
 	$("#canvas").drawMouse();
-}
-
-$.fn.draw = function() {
-	var clear = function(e) {
-		canvas = $("#canvas");
-		// $("h1").html("TOUCH END");
-		console.log("TOUCH clear canvas: ", canvas.width(), canvas.height());
-		ctx.clearRect(0, 0, canvas.width(), canvas.height());
-	}
-
-	var start = function(e) {
-		clear(e);
-
-        e = e.originalEvent;
-		ctx.beginPath();
-		x = e.changedTouches[0].pageX;
-		y = e.changedTouches[0].pageY-44;
-		ctx.moveTo(x,y);
-
-
-	};
-	var move = function(e) {
-		e.preventDefault();
-        e = e.originalEvent;
-		x = e.changedTouches[0].pageX;
-		y = e.changedTouches[0].pageY-44;
-		ctx.lineTo(x,y);
-		ctx.stroke();
-	};
-
-	
-	$(this).on("pointerstart", start);
-	$(this).on("pointermove", move);
 }
 
 // prototype to	start drawing on touch using canvas moveTo and lineTo
