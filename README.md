@@ -10,7 +10,7 @@ Voicepedia is also a social app, when you can record and hear voices by  people 
 
 Voicepedia can run on desktop...
 
-![alt tag](https://raw.github.com/tamnd/voicewiki/master/screenshoots/desktop.png)
+![desktop](https://raw.githubusercontent.com/tamnd/voicewiki/master/screenshots/desktop.png)
 
 ### Features
 
