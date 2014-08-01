@@ -1,0 +1,40 @@
+.pagelet-posts {
+	padding-left: 20px;
+	padding-right: 20px;
+	max-width: 700px;
+	margin: auto;
+}
+
+.pagelet-posts .post-header {
+	background-color: #2a83bd; 
+	color: white;
+	border: 1px solid  #2a83bd;
+	font-size: 1.2em;
+	margin-top: 30px;	
+	padding: 20px;
+}
+
+
+.pagelet-posts .post {
+	background-color: white;
+	
+	border: 1px solid #ddd;
+	margin-top: 30px;	
+	padding: 20px;
+}
+
+.pagelet-posts .post .title {
+	font-size: 2em;
+	margin: 0;
+	padding-bottom: 5px;
+}
+
+.pagelet-posts .post .details {
+	font-style: italic;
+}
+
+.pagelet-posts .post .content {
+	font-size: 1.1em;
+	line-height: 1.5em;
+}
+

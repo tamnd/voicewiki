@@ -1,0 +1,53 @@
+body {
+	font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial, sans-serif;
+	font-size: 16px;
+	color: #222;
+}
+
+a {
+	text-decoration: none;
+	color: red;
+}
+
+h1 {
+	font-weight: normal;
+	font-size: 3em;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.main {
+	margin: auto;
+	margin-top: 20px;
+	max-width: 720px;
+}
+
+.post {
+	margin-top: 20px;
+}
+
+.post .title {
+	font-size: 1.4em;
+	line-height: 1.5em;
+}
+
+.post .title:hover {
+	cursor: pointer;
+}
+
+.post .title a {
+	color: #222;
+}
+
+.post .description {
+	font-size: 1.1em;
+	color: #777;
+}
+
+.post .description a {
+	color: #777;
+}
+
+.post .description a:hover {
+	text-decoration: underline;
+}

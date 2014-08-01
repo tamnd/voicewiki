@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Voice wikipedia</title>
+	<link rel="stylesheet" href="/public/css/normalize.min.css" class="style">
+	<link rel="stylesheet" href="/public/css/styles.css" class="style">
+
+	<link rel="stylesheet" href="/public/css/page.mobile.home.css" class="style">
+	<style>
+
+	</style>
+
+</head>
+
+<body>	
+	<div class="main">
+		<h1 class="title">Voicepedia</h1>
+		<div class="content">Use your voice to tell which Wikipedia entry to search for. No need to use your eyes, the entry's content will be reading to you! <br>
+Let's try it, say "Show me...".
+		</div>
+
+		<div id="log"></div>
+	</div>
+	<div class="links">
+		<div class="icon list" onclick="list()">L</div>
+		<div class="icon search" onclick="search()">S</div>
+		<div class="icon help" onclick="help()">?</div>
+	</div>
+
+	<script src="/public/js/vendor/jquery-2.1.1.min.js"></script>
+	<script src="/public/js/speak.js"></script>
+
+	<script src="/public/js/annyang.min.js"></script>
+	<script src="/public/js/pointerevents.js"></script>
+	<script src="/public/js/gesture.js"></script>
+
+	
+	<script src="/public/js/page.mobile.home.js"></script>
+
+</body>	
+</html>
