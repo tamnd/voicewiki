@@ -6,7 +6,11 @@ Voicepedia
 
 Voicepedia is an open source web application written in Go in the server-side and HTML5 technologies in the client side. You can use your voice to tell which Wikipedia entry to search for. No need to use your eyse, the entry's content will be reading to you!
 
-Voicepedia is also a social app, when you can record and hear voices by  people around the world! 
+Voicepedia is also a social app, when you can record and hear voices by  people around the world!
+
+Voicepedia can run on desktop...
+
+![alt tag](https://raw.github.com/tamnd/voicewiki/master/screenshoots/desktop.png)
 
 ### Features
 
