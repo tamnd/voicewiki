@@ -20,13 +20,26 @@ function help() {
 		If you want to hear recent wikpedia. Say. List.")
 }
 
-
+var globalTerm = "";
 
 function search(term) {
-	para = "You want to search for " + term + "." +
-		" Found an article. Do you want to hear this?.";
+	para = "You want to search for " + term + ".";
+	globalTerm = term;
 	writelog(para);
 	speakParagraph(para);
+}
+
+function yes() {
+	if (globalTerm != "") {
+		speakParagraph("You say yes.");
+		// send ajax and get results.
+		speakParagraph(" Found an article. Do you want to hear this?.");		
+	}	
+}
+
+function no() {
+	speakParagraph("You say no.");
+	globalTerm = "";
 }
 
 function writelog(str) {
@@ -46,7 +59,9 @@ function initAnnyang() {
 	  	'show me *entry': search,
 	  	'list': list,
 	  	'help': help,
-	  	'help me': help
+	  	'help me': help,
+	  	'yes': yes,
+	  	'no': no,
 
 	  	// 'help': help
 	  };
@@ -66,7 +81,10 @@ function initGestures() {
 	gestures["?"] = "6701232";
 	gestures["R"] = "267012341";
 	gestures["Z"] = "030";
-	
+	gestures["Y"] = "21076234567";
+	gestures["N"] = "616";
+
+
 
 	$('body').gestures(gestures, function (data) {
 		// document.getElementById('outputbox').innerHTML += data;
@@ -83,6 +101,12 @@ function initGestures() {
 			        break;
 			    case "?": 
 			    	help();
+			    	break;
+			    case "Y": 
+			    	yes();
+			    	break;
+			    case "N": 
+			    	no();
 			    	break;
 			    default:
 			        
