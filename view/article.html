@@ -1,6 +1,6 @@
 <h1>{{.Article.Title}}</h1>
-{{range .Article.Sections}}
-<p>
-  {{.Content}}
+{{$index, $article := range .Article.Sections}}
+<p id="p-{{$index}}">
+  {{$article.Content}}
 </p>
 {{end}}
