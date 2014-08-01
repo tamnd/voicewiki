@@ -8,9 +8,13 @@ Voicepedia is an open source web application written in Go in the server-side an
 
 Voicepedia is also a social app, when you can record and hear voices by  people around the world!
 
-Voicepedia can run on desktop...
+#### Voicepedia can run on desktop...
 
 ![desktop](https://raw.githubusercontent.com/tamnd/voicewiki/master/screenshots/desktop.png)
+
+#### Or on mobile phone...
+
+
 
 ### Features
 
