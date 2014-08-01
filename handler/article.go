@@ -20,6 +20,11 @@ func Article(c web.C, w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	}
+	err = article.Merge()
+	if err != nil {
+		middleware.Fatal(w)
+		return
+	}
 	data["Title"] = article.Title
 	data["Article"] = article
 	middleware.RenderView(w, "article.html", data)

@@ -28,6 +28,7 @@ func main() {
 	middleware.Route("/api/article/:id", api.GetArticle)
 	middleware.Route("/api/search", api.SearchArticle)
 	middleware.Route("/api/list", api.ListArticle)
+	middleware.Route("/api/read", api.ReadSection)
 
 	middleware.Run()
 }

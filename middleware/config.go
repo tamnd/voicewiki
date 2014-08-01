@@ -11,6 +11,10 @@ var Config = &struct {
 		WebRoot string `json:"webroot"`
 		Env     string `json:"env"`
 	} `json:"app"`
+	Upload *struct {
+		Server string `json:"server"`
+		Root   string `json:"root"`
+	} `json:"upload"`
 	Rethink *struct {
 		Address   string `json:"address"`
 		Database  string `json:"database"`
