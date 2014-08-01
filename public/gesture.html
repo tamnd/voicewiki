@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Gesture test</title>
+	<link rel="stylesheet" href="/public/css/styles.css" class="style">
+
+	<style>
+.main {
+	background-color: yellow;
+	min-height: 500px;
+}
+</style>
+</head>
+
+<body>
+	<div class="main">
+		<h1>Gesture test</h1>
+		
+		<div id="output"></div>
+	</div>	
+
+	<script src="/public/js/vendor/jquery-2.1.1.min.js"></script>
+	<script src="/public/js/speak.js"></script>
+	<script src="/public/js/pointerevents.js"></script>
+	<script src="/public/js/gesture.js"></script>
+
+	<script>
+$(document).ready(function () {   
+	var gestures = new Array();
+
+	// Add new gestures here
+	// gestures["RETURNDATA"] = "MOUSESEQUENCE";
+
+	gestures["A"] = "53";
+	gestures["B"] = "260123401234";
+	gestures["C"] = "43210";
+	gestures["D"] = "26701234";
+	gestures["E"] = "4321043210";
+	gestures["F"] = "42";
+	gestures["G"] = "432107650";
+	gestures["H"] = "267012";
+	gestures["I"] = "6";
+	gestures["J"] = "234";
+	gestures["K"] = "3456701";
+	gestures["L"] = "46";
+	gestures["M"] = "6172";
+	gestures["N"] = "616";
+	gestures["O"] = "432107654";
+	gestures["P"] = "670123456";
+	gestures["Q"] = "4321076540";
+	gestures["R"] = "267012341";
+	gestures["S"] = "432101234";
+	gestures["T"] = "02";
+	gestures["U"] = "21076";
+	gestures["V"] = "35";
+	gestures["W"] = "2716";
+	gestures["X"] = "1076543";
+	gestures["Y"] = "21076234567";
+	gestures["Z"] = "030";
+	gestures[" "] = "0";
+	gestures["?"] = "6701232";
+
+	// .main
+	$('body').gestures(gestures, function (data) {
+		// document.getElementById('outputbox').innerHTML += data;
+		// document.getElementById('outputbox').innerHTML = data;
+		if (data !== "") {
+			$("h1").html(data);
+			console.log(data);
+			speakEnglish(data);
+		}
+			
+	});
+});
+	</script>
+</body>
+</html>
