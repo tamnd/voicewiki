@@ -20,6 +20,8 @@ function help() {
 		If you want to hear recent wikpedia. Say. List.")
 }
 
+
+
 function search(term) {
 	para = "You want to search for " + term + "." +
 		" Found an article. Do you want to hear this?.";
@@ -64,6 +66,7 @@ function initGestures() {
 	gestures["?"] = "6701232";
 	gestures["R"] = "267012341";
 	gestures["Z"] = "030";
+	
 
 	$('body').gestures(gestures, function (data) {
 		// document.getElementById('outputbox').innerHTML += data;
