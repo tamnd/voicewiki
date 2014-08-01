@@ -62,11 +62,15 @@ func getRaw(id string) (*Article, error) {
 }
 
 func Search(query string) ([]*Article, error) {
-	article, err := Get(query)
-	if err != nil {
-		return nil, err
+	docs := search(model.Rethink, query)[:1]
+	articles := []*Article{}
+	for _, doc := range docs {
+		article, err := Get(doc.Title)
+		if err == nil {
+			articles = append(articles, article)
+		}
 	}
-	return []*Article{article}, nil
+	return articles, nil
 }
 
 func List() ([]*Article, error) {
