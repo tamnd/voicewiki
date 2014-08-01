@@ -21,6 +21,7 @@ type Article struct {
 }
 
 func Get(id string) (*Article, error) {
+	id = strings.Replace(strings.ToLower(id), "_", " ", -1)
 	shard := model.GetShardID(id)
 	rows, err := gorethink.Table("articles" + shard).Get(id).Run(model.Rethink)
 	if err != nil {

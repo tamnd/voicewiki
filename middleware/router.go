@@ -13,6 +13,14 @@ func Route(pattern string, handler interface{}) {
 	goji.Handle(pattern, handler)
 }
 
+func NotFound(w http.ResponseWriter) {	
+	http.Error(w, "Not Found", http.StatusNotFound)
+}
+
+func Fatal(w http.ResponseWriter) {
+	http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+}
+
 type ServerMux struct {
 }
 

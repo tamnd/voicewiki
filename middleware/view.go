@@ -52,7 +52,7 @@ func RenderView(w io.Writer, filename string, data Data) error {
 	return t.Execute(w, data)
 }
 
-func blockFunc(filename string, data interface{}) (string, error) {
+func blockFunc(filename string, data interface{}) (template.HTML, error) {
 	content, err := loadTemplateContent(filepath.Join(ViewPath, filename))
 	if err != nil {
 		return "", err
@@ -67,5 +67,5 @@ func blockFunc(filename string, data interface{}) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return buffer.String(), nil
+	return template.HTML(buffer.String()), nil
 }

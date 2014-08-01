@@ -1,1 +1,6 @@
-Article
+<h1>{{.Article.Title}}</h1>
+{{range .Article.Sections}}
+<p>
+  {{.Content}}
+</p>
+{{end}}
