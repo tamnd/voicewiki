@@ -10,6 +10,7 @@ var Config = &struct {
 		Bind    string `json:"bind"`
 		WebRoot string `json:"webroot"`
 		Env     string `json:"env"`
+		NumDoc  int64  `json:"numdoc"`
 	} `json:"app"`
 	Upload *struct {
 		Server string `json:"server"`
