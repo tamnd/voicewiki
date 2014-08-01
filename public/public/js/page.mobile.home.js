@@ -32,7 +32,7 @@ function search(term) {
 	    speakParagraph("Found an article. Do you want to hear this?.");
 	    globalTerm = data[0].id
 	} else {
-	    speakParagraph("Article not found")
+	    speakParagraph("Article not found.")
 	}
     })
 }
