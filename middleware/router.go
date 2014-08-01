@@ -21,6 +21,10 @@ func Fatal(w http.ResponseWriter) {
 	http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 }
 
+func BadRequest(w http.ResponseWriter) {
+	http.Error(w, "Bad Request", http.StatusBadRequest)
+}
+
 type ServerMux struct {
 }
 

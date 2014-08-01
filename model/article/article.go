@@ -5,6 +5,7 @@ import (
 	"github.com/keimoon/gore"
 	"github.com/tamnd/voicewiki/model"
 	"github.com/tamnd/voicewiki/model/section"
+	"mime/multipart"
 	"strings"
 )
 
@@ -19,6 +20,7 @@ type Article struct {
 	Title      string             `gorethink:"title" json:"title"`
 	SectionsId []string           `gorethink:"sections" json:"-"`
 	Sections   []*section.Section `gorethink:"-" json:"sections"`
+	Existed    bool               `gorethink:"-" json:"-"`
 }
 
 func Get(id string) (*Article, error) {
@@ -35,8 +37,8 @@ func Get(id string) (*Article, error) {
 		if err != nil {
 			return nil, err
 		}
-		err = article.merge()
-		return article, err
+		article.Existed = true
+		return article, nil
 	}
 	return getRaw(id)
 }
@@ -90,8 +92,72 @@ func List() ([]*Article, error) {
 	return articles, nil
 }
 
-func (article *Article) merge() error {
+func (article *Article) Merge() error {
+	shard := model.GetShardID(article.Id)
+	if article.Existed {
+		for _, sectionId := range article.SectionsId {
+			sect, err := section.Get(article.Id, sectionId)
+			if err != nil {
+				return err
+			}
+			err = sect.Merge(shard)
+			if err != nil {
+				return err
+			}
+			article.Sections = append(article.Sections, sect)
+		}
+	}
 	return nil
+}
+
+func (article *Article) AddAudio(sectionId string, uploadFile multipart.File) error {
+	if article.Existed {
+		for _, sectionId := range article.SectionsId {
+			sect, err := section.Get(article.Id, sectionId)
+			if err != nil {
+				return err
+			}
+			article.Sections = append(article.Sections, sect)
+		}
+	}
+	var sect *section.Section = nil
+	for i := range article.Sections {
+		if article.Sections[i].Id == sectionId {
+			sect = article.Sections[i]
+		}
+	}
+	if sect == nil {
+		return model.ErrNotFound
+	}
+	var err error
+	if !article.Existed {
+		err = article.CreateFromRaw()
+		if err != nil {
+			return err
+		}
+	} else {
+		sect, err = section.Get(article.Id, sect.Id)
+		if err != nil {
+			return err
+		}
+	}
+	return sect.AddAudio(article.Id, uploadFile)
+}
+
+func (article *Article) CreateFromRaw() error {
+	shard := model.GetShardID(article.Id)
+	for _, sect := range article.Sections {
+		err := sect.CreateFromRaw(shard)
+		if err != nil {
+			return err
+		}
+		article.SectionsId = append(article.SectionsId, sect.Id)
+	}
+	_, err := gorethink.Table("articles" + shard).Insert(article).RunWrite(model.Rethink)
+	if err == nil {
+		article.Existed = true
+	}
+	return err
 }
 
 func (raw *ArticleRaw) build() *Article {
@@ -99,8 +165,9 @@ func (raw *ArticleRaw) build() *Article {
 		Id:    raw.Id,
 		Title: raw.Title,
 	}
-	for _, line := range strings.Split(raw.Content, "\n") {
-		article.Sections = append(article.Sections, section.BuildFromText(line))
+	for i, line := range strings.Split(raw.Content, "\n") {
+		article.Sections = append(article.Sections, section.BuildFromText(i, line))
 	}
+	article.Existed = false
 	return article
 }

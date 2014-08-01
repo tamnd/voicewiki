@@ -23,12 +23,11 @@ func GetArticle(c web.C, w http.ResponseWriter, r *http.Request) {
 }
 
 func SearchArticle(w http.ResponseWriter, r *http.Request) {
-	queries := r.URL.Query()["q"]
-	if len(queries) == 0 {
-		middleware.NotFound(w)
+	query := r.FormValue("q")
+	if len(query) == 0 {
+		middleware.BadRequest(w)
 		return
 	}
-	query := queries[0]
 	articles, _ := article.Search(query)
 	middleware.RenderJSON(w, articles)
 }

@@ -1,6 +1,10 @@
 <h1>{{.Article.Title}}</h1>
-{{range $index, $article := .Article.Sections}}
+{{range $index, $section := .Article.Sections}}
 <p id="p-{{$index}}">
-  {{$article.Content}}
+  {{$section.Content}} <br />
+  {{range $section.Audios}}
+  {{.URL}}
+  <a href="http://{{.URL}}">Listen</a> <br />
+  {{end}}
 </p>
 {{end}}
