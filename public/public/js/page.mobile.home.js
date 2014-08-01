@@ -23,17 +23,24 @@ function help() {
 var globalTerm = "";
 
 function search(term) {
-	para = "You want to search for " + term + ".";
-	globalTerm = term;
-	writelog(para);
-	speakParagraph(para);
+    para = "You want to search for " + term + ".";
+    globalTerm = term;
+    writelog(para);
+    speakParagraph(para);
+    $.getJSON("/api/search?q=" + term, function(data) {
+	if (data != null && data.length > 0) {
+	    speakParagraph("Found an article. Do you want to hear this?.");
+	    globalTerm = data[0].id
+	} else {
+	    speakParagraph("Article not found")
+	}
+    })
 }
 
 function yes() {
 	if (globalTerm != "") {
-		speakParagraph("You said yes.");
-		// send ajax and get results.
-		speakParagraph(" Found an article. Do you want to hear this?.");		
+	    speakParagraph("You said yes.");
+	    window.location = "/article/" + globalTerm
 	}	
 }
 
@@ -57,7 +64,7 @@ function initAnnyang() {
 	  // Let's define our first command. First the text we expect, and then the function it should call
 	  var commands = {
 	  	'show me *entry': search,
-	  	'list': list,
+	  	'list': recentList,
 	  	'help': help,
 	  	'help me': help,
 	  	'yes': yes,
@@ -90,7 +97,7 @@ function initGestures() {
 			// speakEnglish(data);	
 			switch(data) {
 			    case "S":
-			        search("Taylor Swift");
+			    search("Taylor Swift");
 			        break;
 			    case "R":
 			        recentList();
