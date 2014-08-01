@@ -17,9 +17,9 @@ Voicepedia is also a social app, when you can record and hear voices by  people 
 ![mobile](https://raw.githubusercontent.com/tamnd/voicewiki/master/screenshots/mobile.png)
 
 #### with voice commands and fancy gestures...
-- Draw **R** to hear recent articles read by real people
+- Draw **R** to listen recent articles read by real people
 - Draw **S** to start searching
-- Draw **?** to hear how to use Voicepedia
+- Draw **?** to listen how to use Voicepedia
 
 ![mobile](https://raw.githubusercontent.com/tamnd/voicewiki/master/screenshots/gestures.png)
 
