@@ -14,6 +14,7 @@ Voicepedia is also a social app, when you can record and hear voices by  people 
 
 #### Or on mobile phone...
 
+![mobile](https://raw.githubusercontent.com/tamnd/voicewiki/master/screenshots/mobile.png)
 
 
 ### Features
