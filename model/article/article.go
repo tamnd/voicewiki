@@ -2,6 +2,7 @@ package article
 
 import (
 	"github.com/dancannon/gorethink"
+	"github.com/keimoon/gore"
 	"github.com/tamnd/voicewiki/model"
 	"github.com/tamnd/voicewiki/model/section"
 	"strings"
@@ -59,7 +60,34 @@ func getRaw(id string) (*Article, error) {
 }
 
 func Search(query string) ([]*Article, error) {
-	return nil, nil
+	article, err := Get(query)
+	if err != nil {
+		return nil, err
+	}
+	return []*Article{article}, nil
+}
+
+func List() ([]*Article, error) {
+	pool := model.Redis["list"]
+	conn, err := pool.Acquire()
+	if conn == nil {
+		return nil, nil
+	}
+	defer pool.Release(conn)
+	result, err := gore.NewCommand("ZREVRANGE", "articles", 0, 10).Run(conn)
+	if err != nil {
+		return nil, err
+	}
+	idList := []string{}
+	err = result.Slice(&idList)
+	articles := []*Article{}
+	for _, id := range idList {
+		article, err := Get(id)
+		if err == nil {
+			articles = append(articles, article)
+		}
+	}
+	return articles, nil
 }
 
 func (article *Article) merge() error {

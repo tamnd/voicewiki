@@ -6,6 +6,7 @@ import (
 	"io"
 	"io/ioutil"
 	"path/filepath"
+	"encoding/json"
 )
 
 type Data map[string]interface{}
@@ -50,6 +51,11 @@ func RenderView(w io.Writer, filename string, data Data) error {
 	}
 	data["Content"] = filename
 	return t.Execute(w, data)
+}
+
+func RenderJSON(w io.Writer, data interface{}) error {
+	encoder := json.NewEncoder(w)
+	return encoder.Encode(data)
 }
 
 func blockFunc(filename string, data interface{}) (template.HTML, error) {
