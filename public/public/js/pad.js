@@ -48,10 +48,15 @@ $.fn.drawTouch = function() {
 		ctx.stroke();
 	};
 
+	// set time out for clear data.
+	var end = function(e) {
+		setTimeout(clear, 4000);
+	}
+
 	
 	$(this).on("touchstart", start);
 	$(this).on("touchmove", move);
-	// $(this).on("touchend", clear);	
+	$(this).on("touchend", end);	
 }; 
     
 // prototype to	start drawing on pointer(microsoft ie) using canvas moveTo and lineTo
@@ -107,7 +112,7 @@ $.fn.drawMouse = function() {
 	var stop = function(e) {
 		clicked = 0;
 		// clear canvas
-		
+		setTimeout(clear, 4000);
 	};
 	$(this).on("mousedown", start);
 	$(this).on("mousemove", move);

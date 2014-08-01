@@ -8,7 +8,7 @@ function welcome() {
 	speakParagraph("Welcome to Voice Wikipedia.")
 }
 
-function list() {
+function recentList() {
 	speakParagraph("There are 10 recent wikipedia articles.\
 		Do you want to hear them?.")
 }
@@ -92,8 +92,8 @@ function initGestures() {
 			    case "S":
 			        search("Taylor Swift");
 			        break;
-			    case "L":
-			        list();
+			    case "R":
+			        recentList();
 			        break;
 			    case "?": 
 			    	help();
