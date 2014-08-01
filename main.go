@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/tamnd/voicewiki/handler"
 	"github.com/tamnd/voicewiki/middleware"
+	"github.com/tamnd/voicewiki/model"
 	"os"
 )
 
@@ -17,6 +18,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	model.Init()
 
 	middleware.InitRouter()
 	middleware.Route("/", handler.Home)
