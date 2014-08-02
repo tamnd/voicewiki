@@ -31,6 +31,7 @@ func ngram(tokens []string, n int) []string {
 type Document struct {
 	Title string
 	Score float64
+	Matches int
 }
 
 type DocumentList []*Document
@@ -89,9 +90,10 @@ func search(session *gorethink.Session, query string) DocumentList {
 					rows.One(title)
 					doc = &Document{Score: 0, Title: title.Slug}
 				}
-				tf := float64(n) / float64(len(doc.Title))
+				tf := float64(n) / float64(len(tokenizer(doc.Title)))
 				idf := math.Log(float64(numDoc) / float64(len(idx.Docs)))
-				doc.Score += tf * idf * float64(n)
+				doc.Matches++
+                                doc.Score += tf * idf * float64(n) * float64(100 + 50 * (doc.Matches - 1)) / 100.0
 				docs[docId] = doc
 			}
 		}
