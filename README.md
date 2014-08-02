@@ -37,6 +37,9 @@ Voicepedia is also a social app, when you can record and hear voices by  people 
 * [RethinkDB](http://rethinkdb.com/)
 * [Redis](http://redis.io/)
 * [Goji](https://goji.io/)
+* [Annyang](https://github.com/TalAter/annyang)
+* [Recordmp3js](https://github.com/nusofthq/Recordmp3js)
+* [Mouse Gesture Recognition](http://www.bytearray.org/?p=91)
 
 #### Database
 
