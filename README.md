@@ -29,6 +29,31 @@ Voicepedia is also a social app, when you can record and hear voices by  people 
 
 ### How to install
 
+#### Open source library used
+
+* [Wikipedia extractor](https://github.com/bwbaugh/wikipedia-extractor)
+* [RethinkDB](http://rethinkdb.com/)
+* [Redis](http://redis.io/)
+* [Goji](https://goji.io/)
+
+#### Database
+
+* Start RethinkDB and Redis
+* Download lastest wikipedia database at [Wikipedia database dump](http://download.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2)
+* Uncompress using bzip2 (44GB uncompressed)
+* Clean database using Wikipedia extractor (about 5 - 6 hours)
+* Import database using scripts/import.go (about 4 hours)
+* Index database using scripts/index.go (about 4.5 hours)
+
+#### Running
+
+```
+go get github.com/tamnd/voicewiki
+cd $GOPATH/src/github.com/tamnd/voicewiki
+go build && ./voicewiki
+```
+
+
 ### What includes in the source code?
 
 ### License
