@@ -88,12 +88,13 @@ function initGestures() {
 	gestures["Z"] = "030";
 	gestures["Y"] = "21076234567";
 	gestures["N"] = "616";
+	gestures["P"] = "670123456";
 
 	$('body').gestures(gestures, function (data) {
 		// document.getElementById('outputbox').innerHTML += data;
 		// document.getElementById('outputbox').innerHTML = data;
 		if (data !== "") {
-			writelog(data);
+			// writelog(data);
 			// speakEnglish(data);	
 			switch(data) {
 			    case "S":
@@ -104,6 +105,9 @@ function initGestures() {
 			        break;
 			    case "?": 
 			    	help();
+			    	break;
+			   	case "P": 
+			    	pauseSpeak();
 			    	break;
 			    case "Y": 
 			    	yes();
