@@ -60,7 +60,7 @@ body {
 
 		{{range .Articles}}
 		<div class="post">
-			<h2 class="title">{{.Title}}</h2>
+			<h2 class="title"><a href="/article/{{.Id}}">{{.Title}}</a></h2>
 			<div class="content">
 			  {{$x := index .Sections 0}}
 			  {{$x.Content}}
