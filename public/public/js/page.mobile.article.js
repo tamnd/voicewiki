@@ -73,6 +73,19 @@ function pause() {
 	elPlay.addClass("fa-play");
 }
 
+$(".fa-microphone").click(function (e) {
+	$(this).toggleClass("recording");
+})
+
+
+function doRecord() {
+
+}
+
+function doRecordStop() {
+
+}
+
 // ACTIONS
 function doNext() {
 	curid ++;
@@ -152,8 +165,9 @@ function initGestures() {
 	gestures["B"] = "260123401234";
 	// gestures["Y"] = "21076234567";
 	gestures["S"] = "432101234";
+	gestures["R"] = "267012341";
 
-	$('body').gestures(gestures, function (data) {
+	$('.content').gestures(gestures, function (data) {
 		// document.getElementById('outputbox').innerHTML += data;
 		// document.getElementById('outputbox').innerHTML = data;
 		console.log("GESTURE");
@@ -167,6 +181,12 @@ function initGestures() {
 
 			     case "S":
 			        doStart();
+			        break;
+			     case "R":
+			     	curid = 0;
+			     	doStart();
+			     	doStop();
+			       	$(".fa-microphone").toggleClass("recording");
 			        break;
 			    
 			     case "P":
