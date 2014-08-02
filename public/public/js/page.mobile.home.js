@@ -9,8 +9,9 @@ function welcome() {
 }
 
 function recentList() {
-	speakParagraph("There are 10 recent wikipedia articles.\
-		Do you want to hear them?.")
+	speakParagraph("There are new 10 recent wikipedia articles.\
+		");
+	window.location = "/list";
 }
 
 function help() {

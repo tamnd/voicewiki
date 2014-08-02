@@ -13,6 +13,11 @@
 
 	<link rel="stylesheet" href="/public/css/page.mobile.article.css" class="style">
 
+	<style>
+.header .controls .control i.recording {
+	color: red;
+}
+	</style>
 </head>
 
 <body>	
@@ -20,6 +25,7 @@
 		<h1>{{.Article.Title}}</h1>
 
 		<div class="controls">
+			<div class="control" onclick="doRecord();"><i class="fa fa-microphone"></i></div>
 			<div class="control" onclick="doPrev();"><i class="fa fa-backward"></i></div>
 			<div class="control"><i id="icon-play" class="fa fa-play"></i></div>
 			<div class="control" onclick="doNext();"><i class="fa fa-forward"></i></div>
