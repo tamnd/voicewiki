@@ -94,7 +94,7 @@ function initGestures() {
 		// document.getElementById('outputbox').innerHTML += data;
 		// document.getElementById('outputbox').innerHTML = data;
 		if (data !== "") {
-			writelog(data);
+			// writelog(data);
 			// speakEnglish(data);	
 			switch(data) {
 			    case "S":
