@@ -104,7 +104,7 @@ function doSearch(term) {
 	speakParagraph(para);
 }
 
-function init() {
+function initAnnyang() {
 	if (annyang) {
 	
 	  // Let's define our first command. First the text we expect, and then the function it should call
@@ -126,9 +126,83 @@ function init() {
 	}
 }
 
+function goHome() {
+	window.location = "/";
+}
+
+function no() {
+	console.log("NO");
+}
+
+function yes() {
+	console.log("YES");
+}
+
+function initGestures() {
+	console.log("Init gestures");
+	var gestures = new Array();
+	// gestures["L"] = "46";
+	
+	gestures["H"] = "267012";
+	// gestures["?"] = "6701232";
+	gestures["P"] = "670123456";
+
+	gestures["N"] = "616";
+	gestures["Y"] = "21076234567";
+	gestures["S"] = "432101234";
+
+	$('body').gestures(gestures, function (data) {
+		// document.getElementById('outputbox').innerHTML += data;
+		// document.getElementById('outputbox').innerHTML = data;
+		console.log("GESTURE");
+		if (data !== "") {
+			console.log(data);
+			// speakEnglish(data);	
+			switch(data) {			    
+			    case "H":
+			        goHome();
+			        break;
+
+			     case "S":
+			        doStart();
+			        break;
+			    
+			     case "P":
+			        doStop();
+			        break;
+
+			    case "N":
+			        no();
+			        break;
+			    case "Y":
+			        yes();
+			        break;
+			   
+			    default:			        
+			}
+		}		
+	});
+}
+
+function initPad() {
+	// setup a new canvas for drawing wait for device init
+   	//  setTimeout(function(){
+	// newCanvas();
+	$(".content").pad("#8e44ad");
+    // }, 1000);	
+}
+
+function init() {
+	initAnnyang();
+	initGestures();
+	initPad();
+}
+
 
 $("p").click(function (event) {
 	speakPara($(this));
 });
 
 init();
+
+// speakParaWithId(curid);

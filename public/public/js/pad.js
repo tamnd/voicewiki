@@ -1,15 +1,17 @@
 var ctx;
 
-$.fn.pad = function () {
+$.fn.pad = function (color) {
 	// $("#content").height($(window).height()-90);
     // var canvas = '<canvas id="canvas" width="'+$("#content").width()+'" height="'+$("#content").height()+'"></canvas>';
-    var canvas = '<canvas id="canvas" width="'+$(window).width()+'" height="'+$(window).height()+'" style="position:fixed;top:0;left:0;right:0;bottom:80px;z-index:10;"></canvas>';
+    var canvas = '<canvas id="canvas" width="'+$(window).width()+'" height="'+$(window).height()+'" style="position:fixed;top:80px;left:0;right:0;bottom:80px;z-index:10;"></canvas>';
 	// $(this).html(canvas);
 	$(this).append(canvas);
 
 	// setup canvas
 	ctx=document.getElementById("canvas").getContext("2d");
-	ctx.strokeStyle = "#fff";
+	// ctx.strokeStyle = "#fff";
+	ctx.strokeStyle = color;
+	
 	// ctx.lineWidth = 5;	
 	ctx.lineWidth = 20;
 
@@ -86,13 +88,13 @@ $.fn.drawMouse = function() {
 
 	var clear = function(e) {
 		canvas = $("#canvas");
-		console.log("MOUSE clear canvas: ", canvas.width(), canvas.height());
+		// console.log("MOUSE clear canvas: ", canvas.width(), canvas.height());
 		ctx.clearRect(0, 0, canvas.width(), canvas.height());
 	}
 
 	var start = function(e) {
 		clear();
-		console.log(e);
+		// console.log(e);
 		clicked = 1;
 		ctx.beginPath();
 		x = e.offsetX;

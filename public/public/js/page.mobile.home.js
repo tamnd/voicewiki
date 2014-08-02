@@ -45,7 +45,7 @@ function yes() {
 }
 
 function no() {
-	speakParagraph("You said no.");
+	// speakParagraph("You said no.");
 	globalTerm = "";
 }
 
@@ -111,11 +111,9 @@ function initGestures() {
 			    case "N": 
 			    	no();
 			    	break;
-			    default:
-			        
+			    default:			        
 			}
-		}
-		
+		}		
 	});
 }
 
@@ -123,7 +121,7 @@ function initPad() {
 	// setup a new canvas for drawing wait for device init
    //  setTimeout(function(){
 	   // newCanvas();
-	   $(".main").pad();
+	   $(".main").pad("#fff");
     // }, 1000);	
 }
 
