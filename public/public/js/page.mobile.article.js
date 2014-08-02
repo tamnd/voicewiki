@@ -204,5 +204,4 @@ $("p").click(function (event) {
 });
 
 init();
-
-// speakParaWithId(curid);
+speakParaWithId(curid);
