@@ -59,8 +59,11 @@ go build && ./voicewiki
 
 ### What includes in the source code?
 
-* A index/search engine (scripts/index.go, model/article/search.go)
+* A index/search engine write from scratch (scripts/index.go, model/article/search.go)
 * A light HTTP middleware (middleware)
+* A gesture engine (/public/public/js/gesture.js, /public/public/js/pad.js)
+
+And much more...
 
 ### License
 Under BSD license.
