@@ -127,6 +127,7 @@ function initAnnyang() {
 }
 
 function goHome() {
+	cancelSpeak();
 	window.location = "/";
 }
 
@@ -148,7 +149,8 @@ function initGestures() {
 	gestures["P"] = "670123456";
 
 	gestures["N"] = "616";
-	gestures["Y"] = "21076234567";
+	gestures["B"] = "260123401234";
+	// gestures["Y"] = "21076234567";
 	gestures["S"] = "432101234";
 
 	$('body').gestures(gestures, function (data) {
@@ -172,11 +174,12 @@ function initGestures() {
 			        break;
 
 			    case "N":
-			        no();
+			        doNext();
 			        break;
-			    case "Y":
-			        yes();
+			    case "B":
+			        doPrev();
 			        break;
+			    
 			   
 			    default:			        
 			}
