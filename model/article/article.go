@@ -62,7 +62,10 @@ func getRaw(id string) (*Article, error) {
 }
 
 func Search(query string) ([]*Article, error) {
-	docs := search(model.Rethink, query)[:1]
+	docs := search(model.Rethink, query)
+	if len(docs) > 1 {
+		docs = docs[:1]
+	}
 	articles := []*Article{}
 	for _, doc := range docs {
 		article, err := Get(doc.Title)
