@@ -61,4 +61,7 @@ go build && ./voicewiki
 
 ### What includes in the source code?
 
+* A index/search engine (scripts/index.go, model/article/search.go)
+* A light HTTP middleware (middleware)
+
 ### License
